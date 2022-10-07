@@ -1,0 +1,36 @@
+#!/bin/bash
+
+fun1() {
+		echo "File is writeable" >> outputFun1.txt
+		if [ $? -ne 0 ]
+		then
+			echo "41"
+		else
+			echo "40"
+		fi
+}
+
+fun2() {
+		echo "File is writeable" >> outputFun2.txt
+		if [ $? -ne 0 ]
+		then
+			echo "21"
+		else
+			echo "20"
+		fi
+}
+
+exitcode=$(fun1)
+exitcode2=$(fun2)
+
+echo "The exit code of function 1 is $exitcode"
+echo "The exit code of function 2 is $exitcode2"
+
+if [ $exitcode -eq 40 ] && [ $exitcode2 -eq 20 ]
+then
+	echo "Script ran successfully"
+else
+	echo "There were errors"
+fi
+
+# run script from terminal to test if file is writeable with this user's priviledges
